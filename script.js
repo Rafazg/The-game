@@ -38,10 +38,10 @@ class Player {
 }
 
 class Plataform {
-  constructor() {
+  constructor({x, y}) {
     this.position = {
-      x: 200,
-      y: 300,
+      x,
+      y
     };
 
     this.width = 200;
@@ -55,7 +55,9 @@ class Plataform {
 }
 
 const player = new Player();
-const plataform = new Plataform();
+const plataforms = [new Plataform({
+  x: 200, y:300
+}), new Plataform({x:600, y: 400})];
 const keys = {
   right: {
     pressed: false,
@@ -69,17 +71,30 @@ function animate() {
   requestAnimationFrame(animate);
   c.clearRect(0, 0, canvas.width, canvas.height);
   player.update();
-  plataform.draw();
+  plataforms.forEach((plataform) => {
+    plataform.draw();
+  });
 
-  if (keys.right.pressed) {
+  if (keys.right.pressed && player.position.x < 400) {
     player.velocity.x = 5;
-  } else if (keys.left.pressed) {
+  } else if (keys.left.pressed && player.position.x > 100) {
     player.velocity.x = -5;
   } else {
     player.velocity.x = 0;
+
+    if (keys.right.pressed) {
+      plataforms.forEach((plataform) => {
+        plataform.position.x -= 5;
+      });
+    } else if (keys.left.pressed) {
+      plataforms.forEach((plataform) => {
+        plataform.position.x += 5;
+      });
+    }
   }
 
   //plataform collision
+  plataforms.forEach((plataform) => {
   if (
     player.position.y + player.height <= plataform.position.y &&
     player.position.y + player.height + player.velocity.y >=
@@ -89,6 +104,7 @@ function animate() {
   ) {
     player.velocity.y = 0;
   }
+ })
 }
 
 animate();
