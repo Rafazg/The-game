@@ -1,6 +1,6 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
-
+const backGround = document.querySelector("body")
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
@@ -8,8 +8,8 @@ const gravity = 0.5;
 class Player {
   constructor() {
     this.position = {
-      x: 100,
-      y: 100,
+      x: 200,
+      y: 200,
     };
     this.velocity = {
       x: 0,
@@ -44,20 +44,21 @@ class Plataform {
       y
     };
 
-    this.width = 200;
-    this.height = 20;
+    this.width = 500;
+    this.height = 200;
   }
 
   draw() {
-    c.fillStyle = "green";
-    c.fillRect(this.position.x, this.position.y, this.width, this.height);
+    c.drawImage(plataformImage, this.position.x, this.position.y, this.width, this.height);
   }
 }
 
+const plataformImage = new Image();
+ plataformImage.src = 'assets/images/pixilart-drawing.png';
 const player = new Player();
 const plataforms = [new Plataform({
-  x: 200, y:300
-}), new Plataform({x:600, y: 400})];
+  x: 0, y:500
+}), new Plataform({x:650, y: 500}), new Plataform({x: 1200, y: 300})];
 const keys = {
   right: {
     pressed: false,
@@ -66,6 +67,8 @@ const keys = {
     pressed: false,
   },
 };
+
+let scrollOffSet = 0;
 
 function animate() {
   requestAnimationFrame(animate);
@@ -83,16 +86,24 @@ function animate() {
     player.velocity.x = 0;
 
     if (keys.right.pressed) {
+      scrollOffSet += 5;
       plataforms.forEach((plataform) => {
         plataform.position.x -= 5;
       });
     } else if (keys.left.pressed) {
+      scrollOffSet -= 5;
       plataforms.forEach((plataform) => {
         plataform.position.x += 5;
       });
     }
   }
 
+  console.log(scrollOffSet);
+
+  if (scrollOffSet >= 1300) {
+    plataformImage.src ='assets/images/plataform02.png'
+    backGround.style.backgroundImage = 'url(assets/images/city/8.png)'
+  }
   //plataform collision
   plataforms.forEach((plataform) => {
   if (
@@ -107,24 +118,27 @@ function animate() {
  })
 }
 
+
+
+
 animate();
 
 addEventListener("keydown", ({ keyCode }) => {
   console.log(keyCode);
   switch (keyCode) {
     case 65:
-      console.log("left");
+      
       keys.left.pressed = true;
       break;
     case 68:
-      console.log("right");
+      
       keys.right.pressed = true;
       break;
     case 83:
-      console.log("down");
+      
       break;
     case 87:
-      console.log("up");
+      
       player.velocity.y -= 20;
       break;
   }
@@ -134,19 +148,29 @@ addEventListener("keyup", ({ keyCode }) => {
   console.log(keyCode);
   switch (keyCode) {
     case 65:
-      console.log("left");
+      
       keys.left.pressed = false;
       break;
     case 68:
-      console.log("right");
+      
       keys.right.pressed = false;
       break;
     case 83:
-      console.log("down");
+      
       break;
     case 87:
-      console.log("up");
 
       break;
   }
+});
+
+
+const parallaxLayers = document.querySelectorAll('.parallax-layer');
+
+window.addEventListener('scroll', () => {
+  parallaxLayers.forEach(layer => {
+    const speed = parseFloat(layer.getAttribute('data-speed'));
+    const yOffset = window.scrollY * speed;
+    layer.style.transform = `translateY(${yOffset}px)`;
+  });
 });
