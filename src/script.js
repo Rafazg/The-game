@@ -1,6 +1,8 @@
 
-const canvas = document.querySelector("canvas");
+    const canvas = document.querySelector("canvas");
     const c = canvas.getContext("2d");
+    const attackSound = document.getElementById('attackSound')
+    const walkSound = document.getElementById('walkSound')
     const backGround = document.querySelector("body");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -71,7 +73,7 @@ const canvas = document.querySelector("canvas");
 
       update() {
         this.frames++;
-        if (this.frames > 8) this.frames = 0;
+        if (this.frames > 5) this.frames = 0;
     
         // Lógica para atualizar o estado do jogador
         
@@ -161,7 +163,7 @@ const canvas = document.querySelector("canvas");
 
     const bullets = [];
     const plataformImage = new Image();
-    plataformImage.src = "assets/images/pixilart-drawing.png";
+    plataformImage.src = "assets/images/plataform01.png";
     const player = new Player();
     const enemy = new Enemy(canvas.width, 400, 50, 50, 3); // Inimigo de exemplo
     const plataforms = [
@@ -183,6 +185,9 @@ const canvas = document.querySelector("canvas");
       jump: {
         pressed: false,
       },
+      attack:{
+        pressed: false,
+      }
     };
 
     let scrollOffSet = 0;
@@ -257,6 +262,17 @@ const canvas = document.querySelector("canvas");
 
     animate();
 
+    function playWalkSound() {
+      walkSound.play()
+    }
+
+    
+
+    function playAttackSound() {
+       attackSound.play()
+    }
+
+
     addEventListener("keydown", ({ keyCode }) => {
       switch (keyCode) {
         case 65:
@@ -274,7 +290,9 @@ const canvas = document.querySelector("canvas");
 
           player.velocity.y -= 20;
           break;
-        case 32: // Tecla espaço (ou qualquer outra tecla de sua escolha para atirar)
+        case 32:
+          keys.attack.pressed = true;
+          playAttackSound()
           player.currentSprite = player.sprites.atack.right
           const bullet = new Bullet(
             player.position.x + player.width,
@@ -295,11 +313,15 @@ const canvas = document.querySelector("canvas");
         case 68:
           keys.right.pressed = false;
           player.currentSprite = player.sprites.stand.right
+          playWalkSound()
           break;
         case 83:
           break;
         case 87:
           break;
+        case 32:
+          keys.attack.pressed = false;
+          player.currentSprite = player.sprites.stand.right
       }
     });
 
