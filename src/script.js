@@ -1,3 +1,4 @@
+
 const canvas = document.querySelector("canvas");
     const c = canvas.getContext("2d");
     const backGround = document.querySelector("body");
@@ -22,6 +23,7 @@ const canvas = document.querySelector("canvas");
         this.sprites = {
           stand: {
             right: new Image(),
+            left: new Image(),
           },
           run: {
             right: new Image(),
@@ -30,13 +32,23 @@ const canvas = document.querySelector("canvas");
           isJump: {
             jump: new Image(),
           },
+          atack:{
+            right: new Image(),
+          }
         };
 
         // Carregue as imagens
+        
         this.sprites.stand.right.src = "assets/images/player/2 Punk/Punk_idle.png";
+        this.sprites.stand.left.src = "assets/images/player/2 Punk/Punk_idleLeft.png"
         this.sprites.run.right.src = "assets/images/player/2 Punk/Punk_run.png";
         this.sprites.run.left.src = "assets/images/player/2 Punk/Punk_runLeft.png";
         this.sprites.isJump.jump.src = "assets/images/player/2 Punk/Punk_jump.png";
+
+        this.sprites.atack.right.src = "assets/images/player/2 Punk/Punk_attack3.png"
+
+
+
         this.currentSprite = this.sprites.stand.right;
         this.frames = 0;
         this.currentState = "stand"; // Estado inicial do jogador é "parado"
@@ -59,33 +71,15 @@ const canvas = document.querySelector("canvas");
 
       update() {
         this.frames++;
-        if (this.frames > 3.9) this.frames = 0;
-
-        // Defina aqui a lógica para atualizar o estado do jogador
-        if (this.isJumping) {
-          this.currentState = "jump";
-        } else if (keys.right.pressed) {
-          this.currentState = "run";
-          this.currentSprite = this.sprites.run.right;
-          this.velocity.x = 5; // Defina a velocidade positiva para correr para a direita
-        } else if (keys.left.pressed) {
-          this.currentState = "run";
-          this.currentSprite = this.sprites.run.left;
-          this.velocity.x = -5; // Defina a velocidade negativa para correr para a esquerda
-        } else {
-          this.currentState = "stand";
-          this.velocity.x = 0;
-        }
-
-        // Lógica para permitir o pulo somente quando estiver no chão
-        if (this.position.y >= canvas.height - this.height) {
-          this.isJumping = false;
-        }
-
+        if (this.frames > 8) this.frames = 0;
+    
+        // Lógica para atualizar o estado do jogador
+        
+    
         this.draw();
         this.position.y += this.velocity.y;
         this.position.x += this.velocity.x;
-
+    
         if (this.position.y + this.height + this.velocity.y <= canvas.height) {
           this.velocity.y += gravity;
         } else {
@@ -267,22 +261,27 @@ const canvas = document.querySelector("canvas");
       switch (keyCode) {
         case 65:
           keys.left.pressed = true;
+          player.currentSprite = player.sprites.run.left
           break;
         case 68:
           keys.right.pressed = true;
+          player.currentSprite = player.sprites.run.right
           break;
         case 83:
           break;
         case 87:
           keys.jump.pressed = true;
+
           player.velocity.y -= 20;
           break;
         case 32: // Tecla espaço (ou qualquer outra tecla de sua escolha para atirar)
+          player.currentSprite = player.sprites.atack.right
           const bullet = new Bullet(
             player.position.x + player.width,
             player.position.y + player.height / 2
           );
           bullets.push(bullet);
+          
           break;
       }
     });
@@ -291,9 +290,11 @@ const canvas = document.querySelector("canvas");
       switch (keyCode) {
         case 65:
           keys.left.pressed = false;
+          player.currentSprite = player.sprites.stand.left
           break;
         case 68:
           keys.right.pressed = false;
+          player.currentSprite = player.sprites.stand.right
           break;
         case 83:
           break;
