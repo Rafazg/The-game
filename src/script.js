@@ -1,4 +1,4 @@
-const canvas = document.querySelector("canvas");
+const canvas = document.querySelector('#main-canvas');
 const c = canvas.getContext("2d");
 const attackSound = document.getElementById('attackSound')
 const walkSound = document.getElementById('walkSound')
@@ -89,6 +89,17 @@ class Player {
   }
 }
 
+
+
+
+
+
+
+
+
+
+// Inimigos
+
 class Enemy {
   constructor(x, y, width, height, speed) {
     this.position = {
@@ -98,7 +109,30 @@ class Enemy {
     this.width = width;
     this.height = height;
     this.speed = speed; // Velocidade horizontal do inimigo
+
+
+
+    this.sprites = {
+      stand: {
+        right: new Image(),
+        left: new Image(),
+      },
+      run: {
+        right: new Image(),
+        left: new Image(),
+      },
+      isJump: {
+        jump: new Image(),
+      },
+      atack:{
+        right: new Image(),
+      }
+    };
+    //carrega as imagens do inimigo
+    this.sprites. stand.left.src = "assets/images/enemy_3/Idle.png"
   }
+
+  
 
   draw() {
     c.fillStyle = "red"; // Cor do inimigo (pode ser ajustada)
@@ -112,6 +146,19 @@ class Enemy {
     this.draw();
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Plataform {
   constructor({ x, y }) {
@@ -161,10 +208,19 @@ class Bullet {
 }
 
 const bullets = [];
+
 const plataformImage = new Image();
+ 
+
 plataformImage.src = "assets/images/plataform01.png";
+
+
 const player = new Player();
+
+
 const enemy = new Enemy(canvas.width, 400, 50, 50, 3); // Inimigo de exemplo
+
+
 const plataforms = [
   new Plataform({
     x: 0,
