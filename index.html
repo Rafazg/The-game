@@ -4,55 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <audio
-      id="attackSound"
-      src="assets/sounds/audio effects retro/Machines/laser gun.wav"
-    ></audio>
-    <audio
-      id="walkSound"
-      src="assets/sounds/audio effects retro/Animal and caracters/characters/actions and reactions interactions/jump.wav"
-    ></audio>
-    <link rel="stylesheet" href="src/enemies.css">
+    <link rel="stylesheet" href="src/style.css">
+    <audio id="attackSound" src="assets/sounds/attack/hit 1 fast attack.wav"></audio>
+    <audio id="walkSound" src="assets/sounds/audio effects retro/Animal and caracters/characters/walk/walk 1 fast.wav"></audio>
+    <audio id="jumpSound" src="assets/sounds/audio effects retro/Animal and caracters/characters/actions and reactions interactions/jump.wav"></audio>
   </head>
 
-  <style>
-    
-    body {
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-      height: 200vh;
-      width: 400vh;
-      color: #ffffff;
-      background-image: url(assets/images/city/10.png);
-    }
-    .background {
-      width: 100vh;
-      height: 100vh;
-    }
-
-    .transition-background {
-      /* Defina a transição para a propriedade background-image */
-      transition: background-image 0.5s ease;
-    }
-  </style>
 
   <body class="transition-background">
 
-    <canvas id="enemies-canvas"></canvas>
-    <img src="assets/images/enemy_3/Idle.png" alt="">
-
-
-
-
     <canvas id="main-canvas"></canvas>
+    <canvas id="enemies-canvas"></canvas>
+    
 
 
 
-
-
-
-    <script src="src/script.js" type="module"></script>
+    <script type="module" src="src/main.js"></script>
    <!--
     <script src="src/enemies.js" type="module"></script> 
    -->
