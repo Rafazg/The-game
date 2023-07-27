@@ -24,6 +24,9 @@ export class Enemy {
     };
 
     // Carregue as imagens do inimigo
+    this.sprites.walk.onload = () => this.draw();
+    this.sprites.attack.onload = () => this.draw();
+
     this.sprites.walk.src = "/assets/images/enemy_3/walk.png";
     this.sprites.attack.src = "/assets/images/enemy_3/attack.png";
 
@@ -33,7 +36,7 @@ export class Enemy {
   }
 
   draw() {
-    // Desenhe o inimigo no canvas
+    if (this.sprites.walk.complete && this.sprites.attack.complete){
     c.drawImage(
       this.currentSprite,
       96 * this.frames,
@@ -45,6 +48,7 @@ export class Enemy {
       this.width,
       this.height
     );
+    }
   }
 
   update() {
