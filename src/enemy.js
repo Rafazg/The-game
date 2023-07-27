@@ -1,5 +1,3 @@
-
-
 const canvas = document.getElementById('main-canvas');
 const c = canvas.getContext('2d');
 const score = document.getElementById('score');
@@ -24,28 +22,15 @@ export class Enemy {
     };
 
     // Carregue as imagens do inimigo
-    this.sprites.walk.onload = () => this.draw();
-    this.sprites.attack.onload = () => this.draw();
-
     this.sprites.walk.src = "/assets/images/enemy_3/walk.png";
     this.sprites.attack.src = "/assets/images/enemy_3/attack.png";
 
-  
     this.currentSprite = this.sprites.walk; // Defina a imagem inicial do inimigo
     this.frames = 0;
-    this.imagesLoaded = 0;
-    this.totalImages = 2;
-  }
-
-  imageLoaded() {
-    this.imagesLoaded++;
-    if (this.imagesLoaded === this.totalImages) {
-      this.draw();
-    }
   }
 
   draw() {
-    if (this.imagesLoaded === this.totalImages){
+    // Desenhe o inimigo no canvas
     c.drawImage(
       this.currentSprite,
       96 * this.frames,
@@ -57,9 +42,6 @@ export class Enemy {
       this.width,
       this.height
     );
-    } else {
-      console.log('erro');
-    }
   }
 
   update() {
@@ -72,7 +54,7 @@ export class Enemy {
     
     // Alterne entre as imagens do inimigo com base no estado (ex: andar, atacar, etc.)
     // Exemplo simples: Alternar entre andar e atacar a cada 60 quadros
-    if (this.frames % 60 === 0) {
+    if (frames % 60 === 0) {
       if (this.currentSprite === this.sprites.walk) {
         this.currentSprite = this.sprites.attack;
       } else {
