@@ -1,4 +1,4 @@
-import { error } from "jquery";
+
 
 const canvas = document.getElementById('main-canvas');
 const c = canvas.getContext('2d');
