@@ -10,6 +10,11 @@ function scoreSound() {
   soundScore.play()
 }
 
+function winSound() {
+  const sound = document.getElementById('winSound')
+  sound.play()
+}
+
 function updateScoreDisplay(){
   const scoreDisplay = document.getElementById('points');
   scoreDisplay.textContent = `   ${score}`;
@@ -24,10 +29,10 @@ export class Bullet {
         y,
       };
       this.velocity = {
-        x: 10, // Defina a velocidade horizontal da bala
+        x: 35, // Defina a velocidade horizontal da bala
         y: 0, // Defina a velocidade vertical da bala (se necessário)
       };
-      this.width = 10; // Defina a largura da bala
+      this.width = 9; // Defina a largura da bala
       this.height = 5; // Defina a altura da bala
       this.enemies = enemies;
       this.player = player
@@ -43,16 +48,20 @@ export class Bullet {
   
     update() {
       this.draw();
-      this.position.x += this.velocity.x; // Atualiza a posição horizontal da bala
+      this.position.x += this.velocity.x // Atualiza a posição horizontal da bala
       // Atualize a posição vertical da bala (se necessário)
+
+      
+
 
       for (const enemy of this.enemies){
         this.checkCollision(enemy)
 
       }
 
-      if (score === 3) {
+      if (score === 30) {
         winScreen.style.display = 'flex'
+        winSound()
       }
       
       updateScoreDisplay();

@@ -153,18 +153,59 @@ const gravity = 0.5;
 
 } */
 
+const enemyPositions = [
+  { x: 500, y: 300 },
+  { x: 1000, y: 300 },
+  { x: 900, y: 300 },
+  { x: 1200, y: 465 /* Altura do solo*/ },
+  {x: 1500,y: 100,},
+  {x: 1580,y: 90,},
+  {x: 1600,y: 100,},
+  {x: 1650,y: 80,},
+  {x: 1680,y: 300,},
+  {x: 1500,y: 400,},
+  {x: 1550,y: 50,},
+  {x: 1550,y: 400,},
+  {x: 1650,y: 300,},
+  {x: 1600,y: 100,},
+  {x: 1700,y: 30,},
+  {x: 1750,y: 20,},
+  {x: 1800,y: 10,},
+  {x: 1920,y: 465,},
+  {x: 2020,y: 465,},
+  {x: 2320,y: 465,},
+  {x: 2620,y: 465,},
+  {x: 3920,y: 165,},
+  {x: 3020,y: 465,},
+  {x: 3920,y: 165,},
+  {x: 4020,y: 105,},
+  {x: 4220,y: 465,},
+  {x: 4620,y: 465,},
+  {x: 4720,y: 455,},
+  {x: 4920,y: 465,},
+  {x: 5220,y: 465,},
+  {x: 5120,y: 465,},
+  {x: 5620,y: 165,},
+  {x: 5820,y: 265,},
+
+  // Add more positions here as needed
+];
 
 
 const enemies = [];
+createEnemies(enemyPositions);
 
-function createEnemies() {
-  enemies.push(new Enemy( 900, 300));
-  enemies.push(new Enemy( 1000, 300));
-  enemies.push(new Enemy( 900, 300));
-  enemies.push(new Enemy( 1400, 100));
+function createEnemies(positions) {
 
-
+  positions.forEach((position) => {
+    enemies.push(new Enemy(position.x, position.y));
+  });
 }
+
+
+
+
+
 
 
 
@@ -176,6 +217,7 @@ export const plataformImage = new Image();
 const player = new Player(enemies);
 
 const bullets = [];
+const maxX = 100;
 
 
 const plataforms = [
@@ -185,7 +227,10 @@ const plataforms = [
   }),
   new Plataform({ x: 770, y: 500 }),
   new Plataform({ x: 1300, y: 300 }),
-  new Plataform({ x: 1900, y: 200})
+  new Plataform({ x: 1900, y: 200}),
+  new Plataform({ x: 2700, y: 200}),
+  new Plataform({ x: 2700, y: 500}),
+  new Plataform({ x: 3500, y: 500}),
 ];
 
 const keys = {
@@ -265,6 +310,15 @@ function animate(currentTime) {
     bullets.forEach((bullet) => {
       bullet.update();
 
+      
+
+      if (bullet.position.x > maxX) {
+        const index = bullets.indexOf(this);
+        if(index !== -1){
+          bullets.splice(index, 1)
+        }
+      }
+
       // Remova as balas que saem da tela (caso necessário)
       if (bullet.position.x > canvas.width) {
         const index = bullets.indexOf(bullet);
@@ -280,7 +334,7 @@ function animate(currentTime) {
 
   }
 }
-createEnemies();
+/*createEnemies();*/
 animate();
 
 function playJumpSound() {
