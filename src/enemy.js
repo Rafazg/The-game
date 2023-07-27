@@ -33,10 +33,19 @@ export class Enemy {
   
     this.currentSprite = this.sprites.walk; // Defina a imagem inicial do inimigo
     this.frames = 0;
+    this.imagesLoaded = 0;
+    this.totalImages = 2;
+  }
+
+  imageLoaded() {
+    this.imagesLoaded++;
+    if (this.imagesLoaded === this.totalImages) {
+      this.draw();
+    }
   }
 
   draw() {
-    if (this.sprites.walk.complete && this.sprites.attack.complete){
+    if (this.imagesLoaded === this.totalImages){
     c.drawImage(
       this.currentSprite,
       96 * this.frames,
