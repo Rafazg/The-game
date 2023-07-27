@@ -1,0 +1,26 @@
+
+# The G-A-M-E
+
+Um simples jogo de plataforma 2D que está sendo desenvolvido com base nas minhas experiências obtidas desde o momento em que decidir estudar JavaScript(Linguagem de programação). O desenvolvimento deste jogo não foi apenas uma jornada de aprendizado, mas também um processo contínuo de paixão e criatividade. Cada linha de código foi escrita com dedicação, paciência e persistência, buscando sempre melhorar e aprimorar o projeto.
+
+Divirta-se  :D
+## Controles
+
+
+
+
+## Deixe seu Feedback
+
+Por favor, sinta-se à vontade para me contar sobre suas experiências, destacar recursos que mais apreciou, apontar possíveis melhorias ou qualquer outro comentário que queira compartilhar. 
+
+## 
+
+Adicione etiquetas de algum lugar, como: [shields.io](https://shields.io/)
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+
+## Autor
+
+- [@Rafazg](https://github.com/Rafazg)
+
