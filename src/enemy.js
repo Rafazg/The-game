@@ -1,3 +1,5 @@
+import { error } from "jquery";
+
 const canvas = document.getElementById('main-canvas');
 const c = canvas.getContext('2d');
 const score = document.getElementById('score');
@@ -24,6 +26,14 @@ export class Enemy {
     // Carregue as imagens do inimigo
     this.sprites.walk.src = "/assets/images/enemy_3/walk.png";
     this.sprites.attack.src = "/assets/images/enemy_3/attack.png";
+
+    this.sprites.walk.onload = () =>{
+
+    }
+
+    this.sprites.walk.onerror = () =>{
+      console.log('erro ao carregar imagem', error);
+    }
 
     this.currentSprite = this.sprites.walk; // Defina a imagem inicial do inimigo
     this.frames = 0;
