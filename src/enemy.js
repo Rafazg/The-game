@@ -61,7 +61,7 @@ export class Enemy {
     
     // Alterne entre as imagens do inimigo com base no estado (ex: andar, atacar, etc.)
     // Exemplo simples: Alternar entre andar e atacar a cada 60 quadros
-    if (frames % 60 === 0) {
+    if (this.frames % 60 === 0) {
       if (this.currentSprite === this.sprites.walk) {
         this.currentSprite = this.sprites.attack;
       } else {
