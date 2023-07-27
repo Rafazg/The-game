@@ -57,6 +57,8 @@ export class Enemy {
       this.width,
       this.height
     );
+    } else {
+      console.log('erro');
     }
   }
 
