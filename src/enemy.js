@@ -1,5 +1,6 @@
 const canvas = document.getElementById('main-canvas');
 const c = canvas.getContext('2d');
+const score = document.getElementById('score');
 const gravity = 0.5;
 
 export class Enemy {

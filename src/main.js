@@ -163,9 +163,11 @@ function createEnemies() {
   enemies.push(new Enemy( 900, 300));
   enemies.push(new Enemy( 1400, 100));
 
+
 }
 
-const bullets = [];
+
+
 
 export const plataformImage = new Image();
  plataformImage.src = "../assets/images/plataform01.png";
@@ -173,7 +175,7 @@ export const plataformImage = new Image();
 
 const player = new Player(enemies);
 
-
+const bullets = [];
 
 
 const plataforms = [
@@ -244,6 +246,7 @@ function animate(currentTime) {
     if (scrollOffSet >= 1300) {
       plataformImage.src = "/assets/images/plataform02.png";
       backGround.style.backgroundImage = "url(/assets/images/city/8.png)";
+      
     }
 
     //plataform collision

@@ -1,10 +1,24 @@
 const canvas = document.getElementById('main-canvas');
 const c = canvas.getContext('2d');
+const soundScore = document.getElementById('scoreSound')
+const winScreen = document.getElementById('winScreen')
 const gravity = 0.5;
+
+let score = 0;
+
+function scoreSound() {
+  soundScore.play()
+}
+
+function updateScoreDisplay(){
+  const scoreDisplay = document.getElementById('points');
+  scoreDisplay.textContent = `   ${score}`;
+}
+
 
 
 export class Bullet {
-    constructor(x, y, enemies) {
+    constructor(x, y, enemies, player) {
       this.position = {
         x,
         y,
@@ -16,8 +30,12 @@ export class Bullet {
       this.width = 10; // Defina a largura da bala
       this.height = 5; // Defina a altura da bala
       this.enemies = enemies;
+      this.player = player
     }
     
+
+    
+
     draw() {
       c.fillStyle = "red"; // Cor da bala
       c.fillRect(this.position.x, this.position.y, this.width, this.height);
@@ -30,10 +48,17 @@ export class Bullet {
 
       for (const enemy of this.enemies){
         this.checkCollision(enemy)
-      }
-    }
-  
 
+      }
+
+      if (score === 3) {
+        winScreen.style.display = 'flex'
+      }
+      
+      updateScoreDisplay();
+    }
+    
+    
     checkCollision(enemy) {
       // Verifique se houve colisão entre o jogador e o inimigo usando bounding boxes
       if (
@@ -46,7 +71,12 @@ export class Bullet {
         const index = this.enemies.indexOf(enemy);
         if (index !== -1) {
           this.enemies.splice(index, 1);
+          score++;
+          scoreSound()
         }
       }
+
+      
     }
+
   }

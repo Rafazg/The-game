@@ -1,4 +1,6 @@
 const canvas = document.getElementById('main-canvas');
+const score = document.getElementById('score');
+const points = document.getElementById('points');
 const c = canvas.getContext('2d');
 const gravity = 0.5;
 
@@ -33,6 +35,8 @@ export class Player {
         }
       };
 
+      this.points = 0;
+
       this.enemies = enemies;
       
         
@@ -60,7 +64,6 @@ export class Player {
     }
 
 
-
     checkCollision(enemy) {
       // Verifique se houve colisão entre o jogador e o inimigo usando bounding boxes
       if (
@@ -73,6 +76,7 @@ export class Player {
         const index = this.enemies.indexOf(enemy);
         if (index !== -1) {
           this.enemies.splice(index, 1);
+          
         }
       }
 }

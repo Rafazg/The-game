@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="src/style.css">
     <audio id="attackSound" src="assets/sounds/attack/hit 1 fast attack.wav"></audio>
     <audio id="walkSound" src="assets/sounds/audio effects retro/Animal and caracters/characters/walk/walk 1 fast.wav"></audio>
-    <audio id="jumpSound" src="assets/sounds/audio effects retro/Animal and caracters/characters/actions and reactions interactions/jump.wav"></audio>
+   <audio id="jumpSound" src="assets/sounds/audio effects retro/Animal and caracters/characters/actions and reactions interactions/jump.wav"></audio>
+   <audio id="scoreSound" src="assets/sounds/audio effects retro/statistcs (progress on your game)/Pickup Coin.wav"></audio>
   </head>
 
 
@@ -15,11 +16,24 @@
 
     <canvas id="main-canvas"></canvas>
     <canvas id="enemies-canvas"></canvas>
+
+
+    <div id="score">
+      PONTOS:
+      <div id="points"></div>
+    </div>
+
+    <div id="music">
+      <audio id="background-music" src="assets/sounds/Background music.mp3" controls></audio>
+      <img src="assets/images/Music.png" id="play-pause-btn">
+    </div>
     
-
-
+    <div id="winScreen">
+      <img src="assets/images/Win.png" alt="">
+    </div>
 
     <script type="module" src="src/main.js"></script>
+    <script src="src/playPause.js"></script>
    <!--
     <script src="src/enemies.js" type="module"></script> 
    -->
