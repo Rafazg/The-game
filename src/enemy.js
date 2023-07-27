@@ -27,14 +27,7 @@ export class Enemy {
     this.sprites.walk.src = "/assets/images/enemy_3/walk.png";
     this.sprites.attack.src = "/assets/images/enemy_3/attack.png";
 
-    this.sprites.walk.onload = () =>{
-
-    }
-
-    this.sprites.walk.onerror = () =>{
-      console.log('erro ao carregar imagem', error);
-    }
-
+  
     this.currentSprite = this.sprites.walk; // Defina a imagem inicial do inimigo
     this.frames = 0;
   }
