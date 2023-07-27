@@ -1,5 +1,6 @@
 const canvas = document.getElementById('main-canvas');
 const c = canvas.getContext('2d');
+const enemyImage = document.getElementById('image-enemy')
 const score = document.getElementById('score');
 const gravity = 0.5;
 
@@ -22,8 +23,7 @@ export class Enemy {
     };
 
     // Carregue as imagens do inimigo
-    this.sprites.walk.src = "/assets/images/enemy_3/walk.png";
-    this.sprites.attack.src = "/assets/images/enemy_3/attack.png";
+    this.sprites.walk = enemyImage
 
     this.currentSprite = this.sprites.walk; // Defina a imagem inicial do inimigo
     this.frames = 0;
