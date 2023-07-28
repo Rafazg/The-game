@@ -13,6 +13,13 @@ Divirta-se  :D
 ## Deixe seu Feedback
 
 Por favor, sinta-se à vontade para me contar sobre suas experiências, destacar recursos que mais apreciou, apontar possíveis melhorias ou qualquer outro comentário que queira compartilhar. 
+
+Pode entrar em contato comigo pelo Linkedin
+https://www.linkedin.com/in/claudeniro-rafael-83593322a/
+
+
+
+Ou E-MAIL: claudenirorafaelbjj@gmail.com
  
 ## Autor
 - [@Rafazg](https://github.com/Rafazg)
