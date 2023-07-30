@@ -188,11 +188,11 @@ class Bullet {
       y,
     };
     this.velocity = {
-      x: 10, // Defina a velocidade horizontal da bala
-      y: 0, // Defina a velocidade vertical da bala (se necessário)
+      x: 10, 
+      y: 0, 
     };
-    this.width = 10; // Defina a largura da bala
-    this.height = 5; // Defina a altura da bala
+    this.width = 10; 
+    this.height = 5; 
   }
 
   draw() {
@@ -203,7 +203,7 @@ class Bullet {
   update() {
     this.draw();
     this.position.x += this.velocity.x; // Atualiza a posição horizontal da bala
-    // Atualize a posição vertical da bala (se necessário)
+    
   }
 }
 
@@ -218,7 +218,7 @@ plataformImage.src = "assets/images/plataform01.png";
 const player = new Player();
 
 
-const enemy = new Enemy(canvas.width, 400, 50, 50, 3); // Inimigo de exemplo
+const enemy = new Enemy(canvas.width, 400, 50, 50, 3);
 
 
 const plataforms = [
@@ -305,7 +305,7 @@ function animate(currentTime) {
     bullets.forEach((bullet) => {
       bullet.update();
 
-      // Remova as balas que saem da tela (caso necessário)
+      // Remova as balas que saem da tela 
       if (bullet.position.x > canvas.width) {
         const index = bullets.indexOf(bullet);
         if (index > -1) {
