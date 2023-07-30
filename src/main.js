@@ -52,7 +52,6 @@ const enemyPositions = [
   {x: 5620,y: 165,},
   {x: 5820,y: 265,},
 
-  // Add more positions here as needed
 ];
 
 
@@ -198,7 +197,6 @@ function animate(currentTime) {
 
   }
 }
-/*createEnemies();*/
 animate();
 
 function playJumpSound() {
